@@ -8,7 +8,11 @@ export interface ChromaItem {
   handle?: string;
   location?: string;
   borderColor?: string;
+  borderColorLight?: string;
+  borderColorDark?: string;
   gradient?: string;
+  gradientLight?: string;
+  gradientDark?: string;
   url?: string;
 }
 
@@ -114,14 +118,17 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
         <article
           key={i}
           onMouseMove={spotlightEnabled ? handleCardMove : undefined}
-          className="group relative flex flex-col h-full min-h-[400px] rounded-[22px] overflow-hidden border-2 border-transparent transition-colors duration-300 w-full max-w-[340px] min-w-[260px] justify-self-center"
+          className="group relative flex flex-col h-full min-h-[400px] rounded-[22px] overflow-hidden border-2 border-transparent transition-colors duration-300 w-full max-w-[340px] min-w-[260px] justify-self-center border-[var(--card-border)] bg-[var(--card-gradient-light)] dark:border-[var(--card-border-dark)] dark:bg-[var(--card-gradient-dark)]"
           style={
             {
-              '--card-border': c.borderColor || 'transparent',
-              background: c.gradient,
+              '--card-border': c.borderColorLight || c.borderColor || 'transparent',
+              '--card-border-dark': c.borderColorDark || c.borderColor || 'transparent',
+              '--card-gradient-light': c.gradientLight || c.gradient || 'linear-gradient(135deg, #e5e7eb, #d1d5db)',
+              '--card-gradient-dark': c.gradientDark || c.gradient || 'linear-gradient(135deg, #1f2937, #0f172a)',
               '--spotlight-color': 'rgba(255,255,255,0.3)'
             } as React.CSSProperties
           }
+          data-theme-aware
         >
           <div
             className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
@@ -133,9 +140,9 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           <div className="relative z-10 basis-1/2 min-h-[180px] max-h-[50%] p-[12px] box-border">
             <img src={c.image} alt={c.title} loading="lazy" className="w-full h-full object-cover rounded-[14px]" />
           </div>
-          <footer className="relative z-10 basis-1/2 flex flex-col justify-between gap-2 p-4 text-white font-sans">
-            <h3 className="m-0 text-[1.05rem] font-semibold leading-snug text-neutral-50">{c.title}</h3>
-            <p className="m-0 text-sm text-neutral-200 leading-relaxed">{c.subtitle}</p>
+          <footer className="relative z-10 basis-1/2 flex flex-col justify-between gap-2 p-4 font-sans text-foreground">
+            <h3 className="m-0 text-[1.05rem] font-semibold leading-snug text-foreground">{c.title}</h3>
+            <p className="m-0 text-sm text-muted-foreground leading-relaxed">{c.subtitle}</p>
           </footer>
         </article>
       ))}

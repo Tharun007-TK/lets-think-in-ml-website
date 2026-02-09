@@ -57,7 +57,7 @@ const InfoCard = ({ item, delay, variant }: { item: InfoItem; delay: number; var
   return (
     <div
       tabIndex={0}
-      className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-[#2f2f2f] ${cardSize} shadow-[0_18px_40px_-26px_rgba(0,0,0,0.7)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_22px_48px_-26px_rgba(0,0,0,0.75)] focus-visible:-translate-y-1 focus-visible:shadow-[0_22px_48px_-26px_rgba(0,0,0,0.78)] animate-slide-up stagger-${delay}`}
+      className={`group relative overflow-hidden rounded-3xl border border-border/70 bg-card ${cardSize} shadow-[0_18px_40px_-26px_rgba(0,0,0,0.08)] transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-[0_22px_48px_-26px_rgba(0,0,0,0.12)] focus-visible:-translate-y-1 focus-visible:shadow-[0_22px_48px_-26px_rgba(0,0,0,0.14)] animate-slide-up stagger-${delay}`}
       style={{ perspective: "1100px" }}
     >
       <div
@@ -67,14 +67,14 @@ const InfoCard = ({ item, delay, variant }: { item: InfoItem; delay: number; var
         <div
           className={`relative ${padding} ${contentSpacing} flex flex-col justify-start min-h-[254px] md:absolute md:inset-0 md:[backface-visibility:hidden] md:[transform:rotateY(0deg)]`}
         >
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-neutral-400">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
             <Icon className="h-4 w-4" aria-hidden="true" />
             <span>{item.frontTitle}</span>
           </div>
-          <h3 className="text-lg md:text-xl font-serif font-semibold text-neutral-50 leading-snug">
+          <h3 className="text-lg md:text-xl font-serif font-semibold text-foreground leading-snug">
             {item.frontTitle}
           </h3>
-          <p className="text-sm md:text-base text-neutral-300 leading-relaxed">
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             {item.frontSubtitle}
           </p>
         </div>
@@ -83,14 +83,14 @@ const InfoCard = ({ item, delay, variant }: { item: InfoItem; delay: number; var
         <div
           className={`relative ${padding} ${contentSpacing} flex flex-col justify-start min-h-[254px] md:absolute md:inset-0 md:[backface-visibility:hidden] md:[transform:rotateY(180deg)]`}
         >
-          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-neutral-400">
+          <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">
             <Icon className="h-4 w-4" aria-hidden="true" />
             <span>{item.backTitle}</span>
           </div>
-          <h3 className="text-lg md:text-xl font-serif font-semibold text-neutral-50 leading-snug">
+          <h3 className="text-lg md:text-xl font-serif font-semibold text-foreground leading-snug">
             {item.backTitle}
           </h3>
-          <p className="text-sm md:text-base text-neutral-300 leading-relaxed">
+          <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
             {item.backBody}
           </p>
         </div>
@@ -105,48 +105,60 @@ const learnGridItems: ChromaItem[] = [
       "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g1' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23272f3a'/><stop offset='1' stop-color='%23111317'/></linearGradient></defs><rect width='200' height='200' rx='28' fill='url(%23g1)'/><circle cx='68' cy='70' r='42' fill='%23343c4d'/><circle cx='138' cy='130' r='50' fill='%23171c24' opacity='0.82'/></svg>",
     title: "Why AI feels confusing",
     subtitle: "Learn why AI explanations are vague and how to think about them clearly.",
-    borderColor: "#6B7280",
-    gradient: "linear-gradient(135deg, #1F2937, #111827)",
+    borderColorLight: "#D1D5DB",
+    borderColorDark: "#6B7280",
+    gradientLight: "linear-gradient(135deg, #f4f4f5, #e4e5e7)",
+    gradientDark: "linear-gradient(135deg, #2e3137, #1c1e22)",
   },
   {
     image:
       "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g2' x1='1' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23161b23'/><stop offset='1' stop-color='%231f2937'/></linearGradient></defs><rect width='200' height='200' rx='26' fill='url(%23g2)'/><path d='M38 120c28-10 52-40 86-46 10-2 29-1 38 3v55c-13 11-34 21-56 22-26 1-54-10-68-34z' fill='%232b3240' opacity='0.85'/><circle cx='80' cy='70' r='24' fill='%2311141c'/></svg>",
     title: "What AI and ML actually mean",
     subtitle: "Plain-language explanations of the core ideas without marketing gloss.",
-    borderColor: "#4B5563",
-    gradient: "linear-gradient(145deg, #111827, #1F2937)",
+    borderColorLight: "#D1D5DB",
+    borderColorDark: "#4B5563",
+    gradientLight: "linear-gradient(145deg, #f6f7f8, #e8e9ed)",
+    gradientDark: "linear-gradient(145deg, #2b2d33, #1d1f24)",
   },
   {
     image:
       "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g3' x1='0' y1='1' x2='1' y2='0'><stop offset='0' stop-color='%2312171f'/><stop offset='1' stop-color='%231d2532'/></linearGradient></defs><rect width='200' height='200' rx='26' fill='url(%23g3)'/><rect x='32' y='46' width='136' height='108' rx='20' fill='%231c2330' opacity='0.75'/><circle cx='70' cy='102' r='28' fill='%23303848'/><circle cx='134' cy='98' r='22' fill='%23232b3a'/></svg>",
     title: "When AI helps — and when it lies",
     subtitle: "Spot reliable outputs versus confident mistakes in real work.",
-    borderColor: "#707784",
-    gradient: "linear-gradient(160deg, #0F172A, #111827)",
+    borderColorLight: "#D4D4D8",
+    borderColorDark: "#707784",
+    gradientLight: "linear-gradient(160deg, #f4f4f5, #e4e5e7)",
+    gradientDark: "linear-gradient(160deg, #30333a, #1f2126)",
   },
   {
     image:
       "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g4' x1='0' y1='0' x2='1' y2='0.8'><stop offset='0' stop-color='%231b222e'/><stop offset='1' stop-color='%230e1219'/></linearGradient></defs><rect width='200' height='200' rx='28' fill='url(%23g4)'/><path d='M36 134c18-8 30-26 52-30 30-6 60 16 76 18v28H36z' fill='%23232c3b' opacity='0.82'/><path d='M48 56h104c6 0 11 5 11 11v20c0 6-5 11-11 11H48c-6 0-11-5-11-11V67c0-6 5-11 11-11z' fill='%23323b4c' opacity='0.85'/></svg>",
     title: "How to judge AI outputs",
     subtitle: "Evaluate responses critically instead of accepting them at face value.",
-    borderColor: "#5B6472",
-    gradient: "linear-gradient(150deg, #0B1220, #111827)",
+    borderColorLight: "#D4D4D8",
+    borderColorDark: "#5B6472",
+    gradientLight: "linear-gradient(150deg, #f5f6f7, #e6e7ea)",
+    gradientDark: "linear-gradient(150deg, #2c2f35, #1c1e23)",
   },
   {
     image:
       "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g5' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23101824'/><stop offset='1' stop-color='%231b2330'/></linearGradient></defs><rect width='200' height='200' rx='26' fill='url(%23g5)'/><circle cx='92' cy='76' r='34' fill='%232a3242'/><rect x='72' y='104' width='96' height='48' rx='18' fill='%23202836' opacity='0.85'/><circle cx='136' cy='92' r='18' fill='%23131a25' opacity='0.75'/></svg>",
     title: "Use AI as a thinking partner",
     subtitle: "Work with AI to sharpen ideas instead of outsourcing judgment.",
-    borderColor: "#626b78",
-    gradient: "linear-gradient(135deg, #131826, #111827)",
+    borderColorLight: "#D1D5DB",
+    borderColorDark: "#626b78",
+    gradientLight: "linear-gradient(135deg, #f6f6f7, #e8e9eb)",
+    gradientDark: "linear-gradient(135deg, #2d3036, #1c1e23)",
   },
   {
     image:
       "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><defs><linearGradient id='g6' x1='1' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%231d2634'/><stop offset='1' stop-color='%230c1017'/></linearGradient></defs><rect width='200' height='200' rx='28' fill='url(%23g6)'/><rect x='42' y='54' width='116' height='40' rx='14' fill='%23313a4a'/><rect x='32' y='110' width='136' height='36' rx='16' fill='%23212839' opacity='0.9'/><circle cx='148' cy='128' r='16' fill='%23131923' opacity='0.85'/></svg>",
     title: "Make better decisions",
     subtitle: "Decide well even when AI is unavailable, unreliable, or unnecessary.",
-    borderColor: "#555e6c",
-    gradient: "linear-gradient(140deg, #0F172A, #0B1220)",
+    borderColorLight: "#D4D4D8",
+    borderColorDark: "#555e6c",
+    gradientLight: "linear-gradient(140deg, #f3f4f6, #e4e5e8)",
+    gradientDark: "linear-gradient(140deg, #2a2d33, #1a1c21)",
   },
 ];
 
@@ -161,6 +173,41 @@ const Index = () => {
 
         {/* Intro Section */}
         <IntroSection />
+        {/* About the Book */}
+        <section id="about" className="py-10 sm:py-12 lg:py-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="space-y-4 md:space-y-6">
+              <p className="text-sm font-medium text-muted-foreground">About the Book</p>
+              <h2 className="text-3xl sm:text-4xl font-serif font-semibold leading-tight text-foreground max-w-2xl">
+                Let's Think in Machine Learning
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl">
+                This book is intended to help you grasp machine learning without getting lost in jargon and equations. Rather, it’s about intuition and real-world thinking and how to apply this in a clear fashion, so you don’t just know how it works, but also when and why to apply it. It’s about creating strong mental models, not rote memory.
+              </p>
+            </div>
+
+            <div className="space-y-4 md:space-y-5">
+              <div className="w-full rounded-2xl overflow-hidden bg-muted border border-border">
+                <img
+                  src="/main-logo.png"
+                  alt="Let's Think in Machine Learning book cover"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                <div className="rounded-xl border border-border bg-card p-4 sm:p-5 space-y-1">
+                  <h3 className="text-lg font-semibold text-foreground">Concept-First</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">Learn ML through intuition and examples</p>
+                </div>
+                <div className="rounded-xl border border-border bg-card p-4 sm:p-5 space-y-1">
+                  <h3 className="text-lg font-semibold text-foreground">Practical Focus</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">Real use-cases over theoretical overload</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Who This Book Is For */}
         <section id="articles" className="py-10 sm:py-12 lg:py-14 space-y-10">
