@@ -24,6 +24,7 @@ export interface ChromaGridProps {
   fadeOut?: number;
   ease?: string;
   disableSpotlightOnMobile?: boolean;
+  disableHoverEffects?: boolean;
 }
 
 type SetterFn = (v: number | string) => void;
@@ -35,14 +36,15 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
   damping = 0.45,
   fadeOut = 0.6,
   ease = 'power3.out',
-  disableSpotlightOnMobile = true
+  disableSpotlightOnMobile = true,
+  disableHoverEffects = false
 }) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const fadeRef = useRef<HTMLDivElement>(null);
   const setX = useRef<SetterFn | null>(null);
   const setY = useRef<SetterFn | null>(null);
   const pos = useRef({ x: 0, y: 0 });
-  const [spotlightEnabled, setSpotlightEnabled] = useState(true);
+  const [spotlightEnabled, setSpotlightEnabled] = useState(!disableHoverEffects);
 
   const data = items ?? [];
 
@@ -55,6 +57,11 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
     pos.current = { x: width / 2, y: height / 2 };
     setX.current(pos.current.x);
     setY.current(pos.current.y);
+    if (disableHoverEffects) {
+      setSpotlightEnabled(false);
+      return;
+    }
+
     if (disableSpotlightOnMobile) {
       const mql = window.matchMedia('(max-width: 640px)');
       const sync = (e: MediaQueryListEvent | MediaQueryList) => setSpotlightEnabled(!e.matches);
@@ -82,10 +89,12 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
   const handleMove = (e: React.PointerEvent) => {
     const r = rootRef.current!.getBoundingClientRect();
     moveTo(e.clientX - r.left, e.clientY - r.top);
+    if (disableHoverEffects) return;
     gsap.to(fadeRef.current, { opacity: 0, duration: 0.25, overwrite: true });
   };
 
   const handleLeave = () => {
+    if (disableHoverEffects) return;
     gsap.to(fadeRef.current, {
       opacity: 1,
       duration: fadeOut,
@@ -130,13 +139,15 @@ const ChromaGrid: React.FC<ChromaGridProps> = ({
           }
           data-theme-aware
         >
-          <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
-            style={{
-              background:
-                'radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)'
-            }}
-          />
+          {!disableHoverEffects && (
+            <div
+              className="absolute inset-0 pointer-events-none transition-opacity duration-500 z-20 opacity-0 group-hover:opacity-100"
+              style={{
+                background:
+                  'radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 70%)'
+              }}
+            />
+          )}
           <div className="relative z-10 basis-1/2 min-h-[180px] max-h-[50%] p-[12px] box-border">
             <img src={c.image} alt={c.title} loading="lazy" className="w-full h-full object-cover rounded-[14px]" />
           </div>

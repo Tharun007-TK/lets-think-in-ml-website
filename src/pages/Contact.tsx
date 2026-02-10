@@ -1,11 +1,11 @@
-"use client";
-
 import Header from "@/components/Header";
 import { Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 const Contact = () => {
+  const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,13 +13,42 @@ const Contact = () => {
     message: "", 
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<{ type: "success" | "error" | null; message: string }>({ type: null, message: "" });
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const subject = "Contact from Tesign Studio Website";
-    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-    const mailtoLink = `mailto:tesignstudio2024@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+    setIsSubmitting(true);
+    setStatus({ type: null, message: "" });
+
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject?.trim() || "Contact from Tesign Studio Website",
+      message: formData.message,
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText || "Failed to send message.");
+      }
+
+      setStatus({ type: "success", message: "Message sent successfully." });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (e) {
+      setStatus({ type: "error", message: "Error sending message. Please try again." });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -110,10 +139,16 @@ const Contact = () => {
               </div>
               <Button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full py-6"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
+              {status.type && (
+                <p className={`text-sm ${status.type === "success" ? "text-emerald-600" : "text-destructive"}`}>
+                  {status.message}
+                </p>
+              )}
             </form>
           </div>
 

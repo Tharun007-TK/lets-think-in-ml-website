@@ -49,8 +49,8 @@ const Header = () => {
             <a href="/#about" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
               About the Book
             </a>
-            <a href="/#articles" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
-              Who It's For
+            <a href="/#chapters" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
+              Chapters
             </a>
             <a href="/#learn" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
               What You'll Learn
@@ -74,9 +74,9 @@ const Header = () => {
               )}
             </button>
             
-            <Button asChild className="hidden md:flex bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-2 hover:scale-105 transition-all">
-              <a href="/contact">Contact us here</a>
-            </Button>
+            <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
+                <a href="https://letslearn.beehiiv.com/" target="_blank" rel="noopener noreferrer">Buy the eBook →</a>
+              </Button>
 
             {/* Mobile Menu Button */}
             <button
@@ -96,8 +96,8 @@ const Header = () => {
               <a href="/#intro" className="text-sm font-medium hover:text-accent transition-colors">
                 About the Book
               </a>
-              <a href="/#articles" className="text-sm font-medium hover:text-accent transition-colors">
-                Who It's For
+              <a href="/#chapters" className="text-sm font-medium hover:text-accent transition-colors">
+                Chapters
               </a>
               <a href="/#learn" className="text-sm font-medium hover:text-accent transition-colors">
                 What You'll Learn
@@ -106,7 +106,7 @@ const Header = () => {
                 Author
               </a>
               <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
-                <a href="/contact">Contact us here</a>
+                <a href="https://letslearn.beehiiv.com/" target="_blank" rel="noopener noreferrer">Buy the eBook → </a>
               </Button>
             </nav>
           </div>

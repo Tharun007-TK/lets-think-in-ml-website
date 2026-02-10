@@ -31,7 +31,7 @@ const HeroSection = () => {
               asChild
               className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all hover:scale-105 w-full sm:w-auto"
             >
-              <a href="https://gumroad.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://letslearn.beehiiv.com/" target="_blank" rel="noopener noreferrer">
                 Buy the eBook →
               </a>
             </Button>
