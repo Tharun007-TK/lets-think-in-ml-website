@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { trackDownload } from "@/lib/analytics";
+import { DownloadDialog } from "@/components/DownloadDialog";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,10 +53,7 @@ const Header = () => {
             </a>
             <a href="/#chapters" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
               Chapters
-            </a>
-            <a href="/#learn" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
-              What You'll Learn
-            </a>
+            </a>            
             <a href="/#author" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
               Author
             </a>
@@ -75,14 +73,11 @@ const Header = () => {
               )}
             </button>
             
-            <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
-                <a 
-                  href={`https://drive.google.com/uc?export=download&id=${import.meta.env.VITE_DRIVE_FILE_ID}`}
-                  onClick={(e) => trackDownload(e)}
-                >
-                  Download Free eBook →
-                </a>
+            <DownloadDialog>
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
+                Download Free eBook →
               </Button>
+            </DownloadDialog>
 
             {/* Mobile Menu Button */}
             <button
@@ -111,14 +106,11 @@ const Header = () => {
               <a href="/#author" className="text-sm font-medium hover:text-accent transition-colors">
                 Author
               </a>
-              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
-                <a 
-                  href="https://drive.google.com/uc?export=download&id=1CWODC_9bKV_rGHk6KKkQoUbT8x1FASOR" 
-                  onClick={(e) => trackDownload(e)}
-                >
+              <DownloadDialog>
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
                   Download Free eBook → 
-                </a>
-              </Button>
+                </Button>
+              </DownloadDialog>
             </nav>
           </div>
         )}

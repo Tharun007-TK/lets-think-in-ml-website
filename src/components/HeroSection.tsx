@@ -1,7 +1,7 @@
 import { BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import bookCover from "@/assets/book-cover.png";
-import { trackDownload } from "@/lib/analytics";
+import { DownloadDialog } from "@/components/DownloadDialog";
 
 const HeroSection = () => {
   return (
@@ -28,17 +28,13 @@ const HeroSection = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 pt-4 animate-slide-up stagger-2">
-            <Button
-              asChild
-              className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all hover:scale-105 w-full sm:w-auto"
-            >
-              <a 
-                href={`https://drive.google.com/uc?export=download&id=${import.meta.env.VITE_DRIVE_FILE_ID}`}
-                onClick={(e) => trackDownload(e)}
+            <DownloadDialog>
+              <Button
+                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all hover:scale-105 w-full sm:w-auto"
               >
                 Download Free eBook →
-              </a>
-            </Button>
+              </Button>
+            </DownloadDialog>
 
             <div className="flex items-center gap-3">
               <BookOpen className="w-5 h-5 text-muted-foreground" />
