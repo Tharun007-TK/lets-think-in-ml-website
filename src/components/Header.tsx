@@ -10,9 +10,11 @@ const Header = () => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     const shouldBeDark = savedTheme === "dark" || (!savedTheme && prefersDark);
-    
+
     setIsDark(shouldBeDark);
     if (shouldBeDark) {
       document.documentElement.classList.add("dark");
@@ -22,7 +24,7 @@ const Header = () => {
   const toggleTheme = () => {
     const newTheme = !isDark;
     setIsDark(newTheme);
-    
+
     if (newTheme) {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
@@ -40,21 +42,34 @@ const Header = () => {
           <div className="flex items-center min-w-0">
             <a href="/" className="flex items-center gap-1.5 sm:gap-2">
               <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="text-primary-foreground font-bold text-base sm:text-lg">LT</span>
+                <span className="text-primary-foreground font-bold text-base sm:text-lg">
+                  LT
+                </span>
               </div>
-              <span className="text-base sm:text-xl font-bold font-serif truncate">Lets Think in ML</span>
+              <span className="text-base sm:text-xl font-bold font-serif truncate">
+                Lets Think in ML
+              </span>
             </a>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-2">
-            <a href="/#about" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
+            <a
+              href="/#about"
+              className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all"
+            >
               About the Book
             </a>
-            <a href="/#chapters" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
+            <a
+              href="/#chapters"
+              className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all"
+            >
               Chapters
-            </a>            
-            <a href="/#author" className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all">
+            </a>
+            <a
+              href="/#author"
+              className="text-sm font-medium hover:bg-muted/60 rounded-full px-4 py-2 transition-all"
+            >
               Author
             </a>
           </nav>
@@ -72,10 +87,11 @@ const Header = () => {
                 <Moon className="h-4 w-4 sm:h-5 sm:w-5" />
               )}
             </button>
-            
+
             <DownloadDialog>
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
-                Download Free eBook →
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-4 sm:px-6 text-sm sm:text-base whitespace-nowrap">
+                <span className="sm:hidden">Download</span>
+                <span className="hidden sm:inline">Download Free eBook →</span>
               </Button>
             </DownloadDialog>
 
@@ -85,7 +101,11 @@ const Header = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
-              {isMenuOpen ? <X className="h-5 w-5 sm:h-6 sm:w-6" /> : <Menu className="h-5 w-5 sm:h-6 sm:w-6" />}
+              {isMenuOpen ? (
+                <X className="h-5 w-5 sm:h-6 sm:w-6" />
+              ) : (
+                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -94,21 +114,33 @@ const Header = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 border-t border-border animate-fade-in">
             <nav className="flex flex-col gap-4">
-              <a href="/#intro" className="text-sm font-medium hover:text-accent transition-colors">
+              <a
+                href="/#intro"
+                className="text-sm font-medium hover:text-accent transition-colors"
+              >
                 About the Book
               </a>
-              <a href="/#chapters" className="text-sm font-medium hover:text-accent transition-colors">
+              <a
+                href="/#chapters"
+                className="text-sm font-medium hover:text-accent transition-colors"
+              >
                 Chapters
               </a>
-              <a href="/#learn" className="text-sm font-medium hover:text-accent transition-colors">
+              <a
+                href="/#learn"
+                className="text-sm font-medium hover:text-accent transition-colors"
+              >
                 What You'll Learn
               </a>
-              <a href="/#author" className="text-sm font-medium hover:text-accent transition-colors">
+              <a
+                href="/#author"
+                className="text-sm font-medium hover:text-accent transition-colors"
+              >
                 Author
               </a>
               <DownloadDialog>
                 <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
-                  Download Free eBook → 
+                  Download Free eBook →
                 </Button>
               </DownloadDialog>
             </nav>

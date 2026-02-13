@@ -23,22 +23,25 @@ const HeroSection = () => {
               Let's Think in Machine Learning
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-xl animate-slide-up stagger-1">
-              You don't need formulas or hype to understand AI. This book helps you think clearly about what Machine Learning is, when it helps, and when it doesn't.
+              You don't need formulas or hype to understand AI. This book helps
+              you think clearly about what Machine Learning is, when it helps,
+              and when it doesn't.
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 pt-4 animate-slide-up stagger-2">
             <DownloadDialog>
-              <Button
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all hover:scale-105 w-full sm:w-auto"
-              >
-                Download Free eBook →
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all hover:scale-105 w-full sm:w-auto">
+                <span className="sm:hidden">Download</span>
+                <span className="hidden sm:inline">Download Free eBook →</span>
               </Button>
             </DownloadDialog>
 
             <div className="flex items-center gap-3">
               <BookOpen className="w-5 h-5 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground font-medium">Instant digital download</span>
+              <span className="text-sm text-muted-foreground font-medium">
+                Instant digital download
+              </span>
             </div>
           </div>
         </div>
