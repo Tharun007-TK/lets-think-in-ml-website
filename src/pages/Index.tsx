@@ -3,6 +3,8 @@ import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
 import MagicBento from "./MagicBento";
 import { Quote, User } from "lucide-react";
+import aboutImg from "@/assets/about_img.png";
+import authorImg from "@/assets/author.png";
 
 const Index = () => {
   return (
@@ -38,7 +40,7 @@ const Index = () => {
             <div className="space-y-4 md:space-y-5">
               <div className="w-full rounded-2xl overflow-hidden bg-muted border border-border">
                 <img
-                  src="src/assets/about_img.png"
+                  src={aboutImg}
                   alt="Let's Think in Machine Learning book cover"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -109,7 +111,7 @@ const Index = () => {
               {/* Author Image Placeholder */}
               <div className="w-28 h-28 md:w-32 md:h-32 rounded-full overflow-hidden bg-muted flex-shrink-0 border border-border/70">
                 <img
-                  src="src/assets/author.png"
+                  src={authorImg}
                   alt="Author portrait placeholder"
                   className="w-full h-full object-cover"
                 />
