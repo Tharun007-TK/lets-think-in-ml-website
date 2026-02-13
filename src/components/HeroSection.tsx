@@ -1,6 +1,7 @@
 import { BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import bookCover from "@/assets/book-cover.png";
+import { trackDownload } from "@/lib/analytics";
 
 const HeroSection = () => {
   return (
@@ -31,8 +32,11 @@ const HeroSection = () => {
               asChild
               className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-4 md:px-10 md:py-6 text-base font-medium transition-all hover:scale-105 w-full sm:w-auto"
             >
-              <a href="https://letslearn.beehiiv.com/" target="_blank" rel="noopener noreferrer">
-                Buy the eBook →
+              <a 
+                href={`https://drive.google.com/uc?export=download&id=${import.meta.env.VITE_DRIVE_FILE_ID}`}
+                onClick={(e) => trackDownload(e)}
+              >
+                Download Free eBook →
               </a>
             </Button>
 

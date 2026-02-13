@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { trackDownload } from "@/lib/analytics";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,7 +76,12 @@ const Header = () => {
             </button>
             
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
-                <a href="https://letslearn.beehiiv.com/" target="_blank" rel="noopener noreferrer">Buy the eBook →</a>
+                <a 
+                  href={`https://drive.google.com/uc?export=download&id=${import.meta.env.VITE_DRIVE_FILE_ID}`}
+                  onClick={(e) => trackDownload(e)}
+                >
+                  Download Free eBook →
+                </a>
               </Button>
 
             {/* Mobile Menu Button */}
@@ -106,7 +112,12 @@ const Header = () => {
                 Author
               </a>
               <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full w-full">
-                <a href="https://letslearn.beehiiv.com/" target="_blank" rel="noopener noreferrer">Buy the eBook → </a>
+                <a 
+                  href="https://drive.google.com/uc?export=download&id=1CWODC_9bKV_rGHk6KKkQoUbT8x1FASOR" 
+                  onClick={(e) => trackDownload(e)}
+                >
+                  Download Free eBook → 
+                </a>
               </Button>
             </nav>
           </div>
