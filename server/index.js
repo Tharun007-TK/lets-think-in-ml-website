@@ -4,17 +4,15 @@ import "dotenv/config";
 import { Resend } from "resend";
 
 /*
- * IMPORTANT: Resend Email Limitations
+ * EMAIL CONFIGURATION
  * 
- * The development email "onboarding@resend.dev" can ONLY send to:
- * - Email addresses verified in your Resend account
+ * Domain Status: VERIFIED ✓
+ * Domain: letsthinkinml.me
  * 
- * To send auto-reply emails to ANY user:
- * 1. Go to https://resend.com/domains
- * 2. Add and verify your domain: letsthinkinml.me
- * 3. Update the "from" field to use your domain: noreply@letsthinkinml.me
+ * With a verified domain, emails can be sent to ANY recipient.
+ * No restrictions on recipient email addresses.
  * 
- * Once verified, auto-replies will work for all users!
+ * Sender: noreply@letsthinkinml.me
  */
 
 const app = express();
@@ -163,8 +161,6 @@ app.post("/api/contact", async (req, res) => {
     console.log("✅ Email sent to owner:", result);
 
     // Send auto-reply to user
-    // NOTE: onboarding@resend.dev can only send to verified emails
-    // For production, use a verified domain
     try {
       const autoReply = await resend.emails.send({
         from: "Let's Think in ML <noreply@letsthinkinml.me>",
@@ -177,9 +173,8 @@ app.post("/api/contact", async (req, res) => {
       console.log("✅ Auto-reply sent to user:", email, autoReply);
       res.json({ success: true, message: "Email sent and auto-reply delivered" });
     } catch (autoReplyError) {
-      console.warn("⚠️  Auto-reply failed (onboarding@resend.dev can only send to verified emails):", email, autoReplyError.message);
-      // Still return success because the main email to owner was sent
-      res.json({ success: true, message: "Email sent (auto-reply requires verified domain)" });
+      console.warn("⚠️  Auto-reply failed:", email, autoReplyError.message);
+      res.json({ success: true, message: "Email sent but auto-reply failed" });
     }
   } catch (err) {
     console.error("RESEND ERROR:", err);
